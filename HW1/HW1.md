@@ -1,4 +1,4 @@
-#Homework 1
+# Homework 1
 
 Basically, used wget to download dataset from another HPC3 account. A dirctgory with 2 text files.
 After decompressing and removign the original compressed file, used head and tail to cut the the 10th line and write it into to sperate files.
