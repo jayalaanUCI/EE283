@@ -12,4 +12,5 @@ rm problem1.tar.gz
 
 head -n 10 problem1/p.txt | tail -n 1 > line10p.txt
 head -n 10 problem1/f.txt | tail -n 1 > line10f.txt
+cat line10o.txt line 10f.txt > lines10pf.txt
 
