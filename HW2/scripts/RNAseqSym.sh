@@ -8,12 +8,11 @@ File="${DestDir}/RNAseq.samplecoding.txt"
 
 while read p
 do
-	plex=$(echo $p | cut -f2 -d" " | sed 's/_[^_]*$//')
-	plex="Project_${plex}"
-
+	
 	number=$(echo $p | cut -f1 -d" ")
 	number="Sample_$number"
-
+  plex=$(echo $p | cut -f2 -d" " | sed 's/_[^_]*$//')
+	plex="Project_${plex}"
 	barcode=$(echo $p | cut -f4 -d" ")
 	sampleid=$(echo $p | cut -f12 -d " ")
 
