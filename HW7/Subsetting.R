@@ -22,6 +22,6 @@ mytab2 <- mytab %>%
 
 for(i in 1:nrow(mytab2)){
 
-	cat("/pub/jayalaan/EE283/HW3/prob5/RNAout", mytab2$FullSampleName[i], ".sort.bam\n", file="shortRNAseq.names.txt", append=True, sep='')
+	cat("/dsf6/pub/jayalaan/EE283/HW3/prob5/RNAout", mytab2$FullSampleName[i], ".sort.bam\n", file="shortRNAseq.names.txt", append=TRUE, sep='')
 }
 write_tsv(mytab2,"shortRNAseq.txt")
