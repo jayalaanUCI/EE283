@@ -9,7 +9,7 @@ library(tidyverse)
 getwd()
 mytab=read_tsv("RNAseq384_SampleCoding.txt")
 
-mytab2= <- mytab %>% select(RILcode, TissueCode, Replicate, FullSampleName)
+mytab2 <- mytab %>% select(RILcode, TissueCode, Replicate, FullSampleName)
 	table(mytab2$RILcode)
 	table(mytab2$TissueCode)
 	table(mytab2$Replicate)
