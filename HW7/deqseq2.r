@@ -5,9 +5,8 @@
 
 library("tidyverse")
 library("DESeq2")
-library("cowplot")
 
-sampleInfo = read.table("shortRNAseq.txt")
+sampleInfo = read.table("shortRNAseq.txt", header=TRUE, stringAsfactor=FALSE) 
 sampleInfo$FullSampleName = as.character(sampleInfo$FullSampleName)
 
 countdata = read.table("fly_counts.txt", header=TRUE, row.names=1)
@@ -15,7 +14,7 @@ countdata = read.table("fly_counts.txt", header=TRUE, row.names=1)
 countdata = countdata[ ,6:ncol(countdata)]
 #clean up data
 temp = colnames(countdata)
-temp = gsub("X.pub.jayalaan.EE283.prob5.RNAout.RNAseq.bam.","",temp)
+temp = gsub("X.pub.jayalaan.EE283.prob5.RNAout","",temp)
 temp = gsub(".sort.bam","",temp)
 colnames(countdata) = temp
 
@@ -25,7 +24,7 @@ cbind(temp,sampleInfo$FullSampleName,temp == sampleInfo$FullSampleName)
 
 dds = DESeqDataSetFromMatrix(countData=countdata, colData=sampleInfo, design=~TissueCode)
 dds <- DESeq(dds)
-res <- results(  dds )
+res <- results(dds)
 res
 
 plotMA( res, ylim = c(-1, 1))
@@ -35,6 +34,7 @@ hist( res$pvalue, breaks=20, col="grey" )
 head(res$pvalue)
 
 #external annotation to gene IDs and log transform
+#couldnt install with install.packages(), worked with BiocManager::install
 BiocManager::install("biomaRt")
 library(biomaRt)
 
@@ -48,8 +48,12 @@ sampleDist = dist( t( assay(rld) )
 sampleDistMatrix = as.matrix( sampleDist )
 rownames(sampleDistMatrix = rld$TissueCode
 colnames(sampleDistMatrix) = NULL
-library( "gplots" )
-library( "RColorBrewer" )
+
+install.packages("gplots")
+install.packages("RColorBrewer")
+
+library("gplots")
+library("RColorBrewer")
 colours = colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
 heatmap.2( sampleDistMatrix, trace="none", col=colours)
 
