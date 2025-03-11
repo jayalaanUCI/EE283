@@ -35,11 +35,6 @@ Signif. codes:
 
 ```
 ### Problem 1
-mymodel <- function(df){
-+ out=anova(lm(asin(sqrt(freq)) ~treat + founder+ treat:founder, data=df))
-+ myF= -pf(out[2,3]/out[3,3],out[2,1],lower.tail=FALSE, log.p=TRUE)/log(10)
-+ myF} 
-
 mal=mal %>% mutate(treat=str_sub(pool,2,2))
 
 mal<- mal %>% mutate(treat =as.factor(treat), founder=as.factor(founder))
@@ -63,6 +58,15 @@ results <- mal %>%
   select(chr, pos, neg_log10p)
 
  write.csv(results, "HW8_prob1.csv")
+
+ggplot(data=results, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
++     geom_point()+
++     facet_grid(~chr) +
++     xlab("Position") + ylab("Log(p-value)") +
++     labs(title = "Model 1") + 
++     theme(plot.title = element_text(hjust = 0.5, size = 20),
++           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
 ### Problem 2
 mymodel2<- function(df){
 + anova(lm(asin(sqrt(freq)) ~ founder + treat %in% founder, data=df))
@@ -79,6 +83,14 @@ results2 <- mal %>%
   ) %>%
   select(chr, pos, neg_log10p)
 write.csv(results2, "HW8_prob2.csv")
+
+ ggplot(data=results2, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
++     geom_point()+
++     facet_grid(~chr) +
++     xlab("Position") + ylab("Log(p-value)") +
++     labs(title = "Model 1") + 
++     theme(plot.title = element_text(hjust = 0.5, size = 20),
++           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 
 ### Problem 3
 
