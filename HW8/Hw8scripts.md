@@ -70,6 +70,9 @@ ggplot(data=results, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +     theme(plot.title = element_text(hjust = 0.5, size = 20),
 +           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
+#### Model 1
+![Model1](https://github.com/jayalaanUCI/EE283/blob/main/HW8/plots/Model1.png?raw=true)
+
 ### Problem 2
 
 Different Model
@@ -102,6 +105,8 @@ Visualize model 2
 +     theme(plot.title = element_text(hjust = 0.5, size = 20),
 +           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
+![Model2](https://github.com/jayalaanUCI/EE283/blob/main/HW8/plots/model%202.png?raw=true)
+
 ### Problem 3
 
 ```
