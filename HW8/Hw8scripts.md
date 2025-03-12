@@ -35,6 +35,7 @@ Signif. codes:
 
 ```
 ### Problem 1
+```
 mal=mal %>% mutate(treat=str_sub(pool,2,2))
 
 mal<- mal %>% mutate(treat =as.factor(treat), founder=as.factor(founder))
@@ -58,7 +59,9 @@ results <- mal %>%
   select(chr, pos, neg_log10p)
 
  write.csv(results, "HW8_prob1.csv")
-
+```
+Visualize model 
+```
 ggplot(data=results, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +     geom_point()+
 +     facet_grid(~chr) +
@@ -66,7 +69,7 @@ ggplot(data=results, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +     labs(title = "Model 1") + 
 +     theme(plot.title = element_text(hjust = 0.5, size = 20),
 +           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
-
+```
 ### Problem 2
 
 Different Model
@@ -89,7 +92,7 @@ results2 <- mal %>%
   select(chr, pos, neg_log10p)
 write.csv(results2, "HW8_prob2.csv")
 ```
-Visualize the data model
+Visualize model 2
 ```
  ggplot(data=results2, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +     geom_point()+
