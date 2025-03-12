@@ -68,10 +68,15 @@ ggplot(data=results, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 
 ### Problem 2
+
+Different Model
+```
 mymodel2<- function(df){
 + anova(lm(asin(sqrt(freq)) ~ founder + treat %in% founder, data=df))
 +}
+```
 
+```
 results2 <- mal %>%
   filter(!is.na(freq)) %>%
   group_by(chr, pos) %>%
@@ -83,7 +88,9 @@ results2 <- mal %>%
   ) %>%
   select(chr, pos, neg_log10p)
 write.csv(results2, "HW8_prob2.csv")
-
+```
+Visualize the data model
+```
  ggplot(data=results2, aes(x=pos, y=neg_log10p, color = neg_log10p)) +
 +     geom_point()+
 +     facet_grid(~chr) +
@@ -91,15 +98,21 @@ write.csv(results2, "HW8_prob2.csv")
 +     labs(title = "Model 1") + 
 +     theme(plot.title = element_text(hjust = 0.5, size = 20),
 +           axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
-
+```
 ### Problem 3
 
+```
 library(dplyr)
+
 model1_results <- read.csv("HW8_prob1.csv", check.names=FALSE) %>%
+
 select(-1) %>% rename_with(~ "neg_log10p_model1", .cols=neg_log10p)
+
 
 model2_results <- read.csv("HW8_prob2.csv", check.names=FALSE) %>%
 select(-1) %>% rename_with(~ "neg_log10p_model1", .cols=neg_log10p)
 
+
 merge_results<- left_join(model1_results, model2_results, by= c("chr", "pos"))
 write.csv(merged_results, "merged_model.csv", row.names=FALSE)
+```
